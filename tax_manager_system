@@ -1,0 +1,56 @@
+
+# This function checks if the business type of a business is Enterprise or
+# Company or Corporation
+# If it's Enterprice it charges for 'Vat', If it's a Company, it Charges for
+# 'VAT & IT'and if it's a Corporation, it charges for 'VAT, IT, COP.
+
+
+def taxation(vat = 0, it = 0, cop= 0):
+    # A function that combine the tax applicable to the business type
+    # and provides the balance.
+    # It accepts up to 3 arguments
+
+    tax = (revenue * vat) + (revenue * it) + (revenue * cop)
+
+    income = revenue - tax
+    print(f'''
+        Tax Summary for {bus_name}
+        Business type: {bus_type}
+        ----------------------------------------
+        Your Total Revenue is {revenue}
+        Your Total Tax is {tax}
+        {bus_name} Your Balance is {income}
+''')
+
+print('''
+        __________________________________
+        WELCOME TO THE ONLINE TAX SYSTEM'
+        __________________________________
+''')
+# create a dictionary with default value for registration
+tax_manager = {
+    #the integer 1, represents the default revenue
+    'bus_name_rev': ['business', 1],
+    'bus_type': ['enterprise']
+    }
+# changing the default parameters with user inputs and store it in a new variable.
+
+bus_name = tax_manager['bus_name_rev'][0] = input('Enter your business name>> ')
+revenue = tax_manager['bus_name_rev'][1] = int(input('Enter your gross revenue>> '))
+bus_type = tax_manager['bus_type'][0] = input('Enter Your business type: ')
+
+# Capitalizing the first latter of the business type.
+bus_type = bus_type.title()
+vat = 0.05
+it = 0.15
+cop = 0.03
+# The business type is what automatially tells the function what to do
+
+if bus_type == 'Corporation':
+    taxation(vat, it, cop)
+elif bus_type == 'Company':
+    taxation(vat, it)
+elif bus_type == 'Enterprise':
+    taxation(vat)
+else:
+    print('Wrong business type, please check your spellings')
